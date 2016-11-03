@@ -20,8 +20,10 @@ import javax.enterprise.context.RequestScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
+import javax.json.Json;
 import javax.json.JsonObject;
 import javax.persistence.TypedQuery;
+import javax.websocket.Session;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -43,9 +45,6 @@ public class NoteResource {
     private String content;
     private Timestamp createTime;
     private List<String> categoryList;
-    
-    private List<JsonObject> noteList;
-    private List<JsonObject> allNotes;
 
     @PostConstruct
     private void init() {
@@ -61,16 +60,30 @@ public class NoteResource {
             ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
             Note note = new Note();
             note.setContent(content);
-            note.setCreateDate(new Date());
+            Date createDate = new Date();
+            note.setCreateDate(createDate);
             note.setTitle(title);
             note.setUser(userBean.findUserById(ec.getRemoteUser()));
 //            note.setUser(userBean.findUserById("123"));
             note.setCategory(category);
             noteBean.createNote(note);
-//            sendMessageOverSocket(note.toJSON().toString());
+            JsonObject jsonNote = Json.createObjectBuilder()
+                    .add("title", title)
+                    .add("content", content)
+                    .add("create_date", createDate.toString())
+                    .add("category", category).build();
+            sendMessageOverSocket(jsonNote.toString());
             ec.redirect(ec.getRequestContextPath() + "/faces/manage/postednote.xhtml");
         } catch (IOException ex) {
             Logger.getLogger(NoteBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void sendMessageOverSocket(String message) throws IOException{
+        UserSessionHandler us = UserSessionHandler.getInstance();
+        for (Session session : us.getSessions()) {
+            if(session.isOpen())
+                session.getBasicRemote().sendText(message);
         }
     }
     
