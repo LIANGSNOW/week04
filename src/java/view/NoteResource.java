@@ -21,7 +21,9 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.json.Json;
+import javax.json.JsonArray;
 import javax.json.JsonObject;
+import javax.json.JsonObjectBuilder;
 import javax.persistence.TypedQuery;
 import javax.websocket.Session;
 import javax.ws.rs.GET;
@@ -67,12 +69,14 @@ public class NoteResource {
 //            note.setUser(userBean.findUserById("123"));
             note.setCategory(category);
             noteBean.createNote(note);
-            JsonObject jsonNote = Json.createObjectBuilder()
+            JsonObjectBuilder jsonNote = Json.createObjectBuilder()
                     .add("title", title)
                     .add("content", content)
                     .add("create_date", createDate.toString())
-                    .add("category", category).build();
-            sendMessageOverSocket(jsonNote.toString());
+                    .add("category", category); 
+            
+            JsonArray ja = Json.createArrayBuilder().add(jsonNote).add(jsonNote).build();
+            sendMessageOverSocket(ja.toString());
             ec.redirect(ec.getRequestContextPath() + "/faces/manage/postednote.xhtml");
         } catch (IOException ex) {
             Logger.getLogger(NoteBean.class.getName()).log(Level.SEVERE, null, ex);

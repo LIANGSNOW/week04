@@ -24,6 +24,7 @@
                     </div>
                 </li>
             </ui:repeat>
+            <button type="button" id="start">start</button>
         </ul>
         <table id="notes">
             <thead>
@@ -35,14 +36,14 @@
             </tr>
             </thead>
             <tbody>
-                <ui:repeat value="#{noteResource.allNotes}" var="note">
+                <!--<ui:repeat value="#{noteResource.allNotes}" var="note">-->
                     <tr>
-                        <td><h:outputText value="${note.getString('title')}"/></td>
+<!--                        <td><h:outputText value="${note.getString('title')}"/></td>
                         <td><h:outputText value="${note.getString('create_date')}"/></td>
                         <td><h:outputText value="${note.getString('category')}"/></td>
-                        <td><h:outputText value="${note.getString('content')}"/></td>
+                        <td><h:outputText value="${note.getString('content')}"/></td>-->
                     </tr>
-                </ui:repeat>
+                <!--</ui:repeat>-->
             </tbody>
         </table>
     </h:form>
