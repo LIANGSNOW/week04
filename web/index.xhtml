@@ -6,8 +6,8 @@
       xmlns:ui="http://java.sun.com/jsf/facelets">
     <h:head>
         <title>Facelet Title</title>
-        <script src="../js/jquery.min.js"></script>
-        <script src="../js/ws.js"></script>
+        <script src="#{request.contextPath}/js/jquery.min.js"></script>
+        <script src="#{request.contextPath}/js/ws.js"></script>
     </h:head>
 <!--        <h:body>
 		<li><a href="#{request.contextPath}/faces/login.xhtml">Login</a></li>
@@ -19,13 +19,17 @@
                 <li>
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" name="catIds[]" checked="checked" id="catIds-${cat}" value="${cat}"/><h:outputText value="${cat}"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="checkbox" name="catIds[]" checked="checked" id="catIds-${cat}" value="${cat}"/>
+                            <h:outputText value="${cat}"/>
                         </label>
                     </div>
                 </li>
             </ui:repeat>
             <button type="button" id="start">start</button>
         </ul>
+        <li><a href="#{request.contextPath}/faces/login.xhtml">Login</a></li>
+        <li><a href="#{request.contextPath}/faces/manage/menu.xhtml">Note Menu</a></li>
+      
         <table id="notes">
             <thead>
             <tr>

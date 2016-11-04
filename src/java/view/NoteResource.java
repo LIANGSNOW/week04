@@ -73,7 +73,7 @@ public class NoteResource {
                     .add("title", title)
                     .add("content", content)
                     .add("create_date", createDate.toString())
-                    .add("category", category); 
+                    .add("category", category);  
             
             JsonArray ja = Json.createArrayBuilder().add(jsonNote).add(jsonNote).build();
             sendMessageOverSocket(ja.toString());
@@ -92,9 +92,9 @@ public class NoteResource {
     }
     
     public List<JsonObject> getAllNotes() {
-        List<Note> lstNote = noteBean.getAllNotes();
+        List<Note> listNote = noteBean.getAllNotes();
         List<JsonObject> list = new ArrayList<>();
-        for (Note note: lstNote) {
+        for (Note note: listNote) {
             list.add(note.toJSON());
         }
         return list;

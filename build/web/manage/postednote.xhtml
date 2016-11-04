@@ -17,6 +17,7 @@
                 <th>Content</th>
               </tr>
             </thead>
+               
             <tbody>
                 <ui:repeat value="#{noteResource.noteList}" var="note">
                     <tr>
@@ -27,6 +28,8 @@
                     </tr>
                 </ui:repeat>
             </tbody>
+                 
           </table>
+            <a class="navbar-brand" href="#{request.contextPath}/faces/manage/menu.xhtml">Back</a>
 	</body>
 </html>

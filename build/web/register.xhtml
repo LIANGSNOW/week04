@@ -16,10 +16,10 @@ and open the template in the editor.
 		<h:form>
 			<h:panelGrid columns="2">
 				User Id:
-				<h:inputText value="#{register.userId}"/>;
+				<h:inputText  required="true" value="#{register.userId}"/>;
 
 				Password:
-				<h:inputText value="#{register.password}"/>;
+				<h:inputText  required="true" value="#{register.password}"/>;
 				<h:commandButton value="Add" action="#{register.register()}"/>
 				
 

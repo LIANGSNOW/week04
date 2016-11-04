@@ -6,18 +6,38 @@
       xmlns:f="http://java.sun.com/jsf/core">
 	<head>
 		<title>Create Notes</title>
+                <script src="#{request.contextPath}/js/jquery.min.js"></script>
 	</head>
 	<body>
             <h:form>
-                <div>Title: <h:inputText value="#{noteResource.title}"/></div>
+                <div>Title: <h:inputText required="true" value="#{noteResource.title}"/></div>
                 <div>
                     Category: 
                     <h:selectOneMenu value="#{noteResource.category}">
                         <f:selectItems  value="#{noteResource.getCategoryList()}"/>
                     </h:selectOneMenu>
                 </div>
-                <div>Content <h:inputTextarea value="#{noteResource.content}"/></div>
+                <div>Content <h:inputTextarea required="true" value="#{noteResource.content}"/></div>
                 <h:commandButton value="Create" action="#{noteResource.createNote}" />
             </h:form>
+            <a class="navbar-brand" href="#{request.contextPath}/faces/manage/menu.xhtml">Back</a>
 	</body>
+    <script>
+        $(function(){
+            $("#create").on("click", function(){
+                $('#title').blur(function() {
+                    if( !$(this).val() ) {
+                        alert("title can not be null");
+                        return false;
+                    }
+                });
+                $('#content').blur(function() {
+                    if( !$(this).val() ) {
+                        alert("title can not be null");
+                        return false;
+                    }
+                });
+            });
+        });
+    </script>
 </html>

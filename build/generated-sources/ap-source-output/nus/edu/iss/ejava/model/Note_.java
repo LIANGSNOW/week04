@@ -6,7 +6,7 @@ import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 import nus.edu.iss.ejava.model.User;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2016-11-04T03:29:33")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2016-11-04T13:26:28")
 @StaticMetamodel(Note.class)
 public class Note_ { 
 
