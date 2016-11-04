@@ -127,7 +127,7 @@ public class NoteResource {
     }
     
     public String getName(){
-        return "fuck you";
+        return "null";
     }
 
 
