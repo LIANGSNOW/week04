@@ -1,4 +1,4 @@
-package view;
+package nus.edu.iss.ejava.view;
 
 import java.io.Serializable;
 import javax.faces.application.FacesMessage;
